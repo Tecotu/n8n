@@ -37,7 +37,8 @@ ENV N8N_HOST=0.0.0.0 \
     NODE_PATH=/usr/local/lib/node_modules \
     N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
 
-VOLUME ["/home/n8nuser/.n8n"]
+#VOLUME ["/home/n8nuser/.n8n"]
+VOLUME ["/var/lib/docker/volumes/n8n_data/_data"]
 EXPOSE 5678
 
 ENTRYPOINT ["dumb-init","--"]
