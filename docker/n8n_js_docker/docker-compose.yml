@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  n8n:
+    # Behalte dein Build, falls dein Dockerfile Playwright installiert.
+    # Wenn du kein eigenes Dockerfile nutzt, siehe "Ohne Rebuild" weiter unten.
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: n8n-playwright
+    ports:
+      - "5678:5678"
+    environment:
+      - TZ=Europe/Berlin
+      - N8N_ENCRYPTION_KEY=please-set-a-long-random-string
+
+      # Öffentliche URL für OAuth (ngrok-Domain)
+      - N8N_HOST=racemously-noncombat-lacie.ngrok-free.dev
+      - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://racemously-noncombat-lacie.ngrok-free.dev
+
+      # WICHTIG für Code-Node:
+      - NODE_FUNCTION_ALLOW_EXTERNAL=playwright
+      - NODE_FUNCTION_ALLOW_BUILTIN=*
+      - NODE_PATH=/usr/local/lib/node_modules
+    volumes:
+      - n8n_data:/home/n8nuser/.n8n
+    restart: unless-stopped
+    networks: [nnet]
+
+  ngrok:
+    image: ngrok/ngrok:alpine
+    container_name: n8n-ngrok
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    command:
+      - "http"
+      - "--domain=racemously-noncombat-lacie.ngrok-free.dev"
+      - "http://n8n:5678"
+    restart: unless-stopped
+    networks: [nnet]
+
+networks:
+  nnet:
+
+volumes:
+  n8n_data:
