@@ -1,5 +1,5 @@
 # HTTPS auf Port 5678 im LAN
-n8n.local, https://192.168.188.65 {
+n8n.local, 192.168.188.65 {
 	# internes Zert (Caddys eigene CA) – kein Let's Encrypt nötig
 	tls internal
 

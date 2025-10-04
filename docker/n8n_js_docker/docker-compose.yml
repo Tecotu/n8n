@@ -31,8 +31,8 @@ services:
       # Enforce Settings to avoid user pemission problems
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     volumes:
-      #- n8n_data:/home/n8nuser/.n8n
-      - n8n_data:/var/lib/docker/volumes/n8n_data/_data
+      - n8n_data:/home/n8nuser/.n8n
+      #- n8n_data:/var/lib/docker/volumes/n8n_data/_data
     restart: unless-stopped
     networks: [nnet]
 
