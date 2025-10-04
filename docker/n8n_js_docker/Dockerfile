@@ -46,5 +46,5 @@ ENV N8N_HOST=0.0.0.0 \
 VOLUME ["/home/n8nuser/.n8n"]
 EXPOSE 5678
 
-ENTRYPOINT ["dumb-init","--"]
-CMD ["n8n","start"]CMD ["n8n","start"]
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["n8n", "start"]
