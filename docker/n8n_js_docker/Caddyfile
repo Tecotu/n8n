@@ -1,19 +1,9 @@
-# HTTPS auf Port 5678 im LAN
-n8n.local, 192.168.188.65 {
-	# internes Zert (Caddys eigene CA) – kein Let's Encrypt nötig
-	tls internal
-
-	# große Payloads/Webhooks erlauben (optional)
-	request_body {
-		max_size 50MB
-	}
-
-	# Websocket/Server-Sent Events & Standard-Header
-	header {
-		# leitet dem Upstream mit, dass der Client HTTPS spricht
-		X-Forwarded-Proto https
-	}
-
-	# Proxy zu deinem n8n-Container (der intern weiter HTTP spricht)
-	reverse_proxy n8n:5678
+192.168.188.65 {
+    reverse_proxy n8n:5678
+    
+    tls internal
+    
+    request_body {
+        max_size 50MB
+    }
 }
