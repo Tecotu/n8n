@@ -1,7 +1,5 @@
-192.168.188.65 {
+http://192.168.188.65 {
     reverse_proxy n8n:5678
-    
-    tls internal
     
     request_body {
         max_size 50MB
