@@ -11,9 +11,10 @@ services:
       - N8N_ENCRYPTION_KEY=please-set-a-long-random-string
       
       # Lokaler HTTPS-Zugriff über Caddy
-      - N8N_PROTOCOL=https
+      - N8N_PROTOCOL=http
       - WEBHOOK_URL=http://192.168.188.65/
       - N8N_EDITOR_BASE_URL=http://192.168.188.65/
+      - N8N_SECURE_COOKIE=false
       
       # ngrok Tunnel für OAuth2 Callbacks
       - WEBHOOK_TUNNEL_URL=https://racemously-noncombat-lacie.ngrok-free.dev/
